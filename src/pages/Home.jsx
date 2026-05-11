@@ -1,4 +1,4 @@
-import { HelmetProvider, Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
 import HeroSection from '../components/home/HeroSection';
 import ServicesSection from '../components/home/ServicesSection';
 import StatsSection from '../components/home/StatsSection';
@@ -11,9 +11,8 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>BM Battery Zone | Batteries, UPS & Solar Solutions in Salem</title>
-        <meta name="description" content="BM Battery Zone - Salem's trusted battery shop for car, bike, inverter, solar batteries, UPS systems, and solar installations. Free delivery, expert service, 12+ years experience." />
-        <meta name="keywords" content="battery shop Salem, car battery, inverter battery, UPS, solar panel, BM Battery Zone" />
+        <title>BM Battery Zone | Batteries, UPS & Solar Solutions in Coimbatore</title>
+        <meta name="description" content="BM Battery Zone - Coimbatore's trusted battery shop for car, bike, inverter, solar batteries, UPS systems, and solar installations. Free delivery, expert service, 12+ years experience." />
       </Helmet>
       <main>
         <HeroSection />

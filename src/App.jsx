@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import FloatingCTA from './components/layout/FloatingCTA';
@@ -24,7 +25,7 @@ function ScrollToTop() {
 
 function AppContent() {
   return (
-    <div className="min-h-screen bg-dark-bg text-white">
+    <div className="min-h-screen theme-transition" style={{ background: 'var(--color-bg)', color: 'var(--color-text-primary)' }}>
       <ScrollToTop />
       <Navbar />
       <Routes>
@@ -46,9 +47,11 @@ function AppContent() {
 export default function App() {
   return (
     <HelmetProvider>
-      <Router>
-        <AppContent />
-      </Router>
+      <ThemeProvider>
+        <Router>
+          <AppContent />
+        </Router>
+      </ThemeProvider>
     </HelmetProvider>
   );
 }

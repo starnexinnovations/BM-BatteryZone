@@ -9,7 +9,7 @@ export const faqs = [
     id: 2,
     category: 'General',
     question: 'Do you offer home delivery for batteries?',
-    answer: 'Yes! We offer free doorstep delivery and professional installation within Salem city limits. For nearby towns, delivery is available at a nominal charge. Same-day delivery is available in most cases.',
+    answer: 'Yes! We offer free doorstep delivery and professional installation within Coimbatore city limits. For nearby towns, delivery is available at a nominal charge. Same-day delivery is available in most cases.',
   },
   {
     id: 3,
@@ -63,7 +63,7 @@ export const faqs = [
     id: 11,
     category: 'Service',
     question: 'Do you provide on-site/roadside battery assistance?',
-    answer: 'Yes, we provide roadside battery assistance within Salem city and surrounding areas. Call us anytime and our technician will reach you with a replacement battery. Emergency service available during business hours.',
+    answer: 'Yes, we provide roadside battery assistance within Coimbatore city and surrounding areas. Call us anytime and our technician will reach you with a replacement battery. Emergency service available during business hours.',
   },
   {
     id: 12,
