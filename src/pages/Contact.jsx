@@ -32,15 +32,15 @@ export default function Contact() {
       <div className="page-header">
         <div className="container-max text-center relative z-10">
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="section-title mb-4">Get In <span className="gradient-text">Touch</span></motion.h1>
-          <p className="text-slate-400 max-w-2xl mx-auto">Have a question or need a quote? Reach out via call, WhatsApp, or visit our store.</p>
+          <p className="max-w-2xl mx-auto theme-text-secondary">Have a question or need a quote? Reach out via call, WhatsApp, or visit our store.</p>
         </div>
       </div>
-      <main className="section-padding bg-dark-bg relative">
+      <main className="section-padding relative" style={{ background: 'var(--color-bg)' }}>
         <div className="absolute inset-0 bg-dots opacity-20 pointer-events-none" />
         <div className="container-max relative z-10">
           <div className="grid lg:grid-cols-2 gap-12">
             <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
-              <h2 className="text-2xl font-display font-bold text-white mb-8">Contact <span className="gradient-text">Information</span></h2>
+              <h2 className="text-2xl font-display font-bold theme-text mb-8">Contact <span className="gradient-text">Information</span></h2>
               <div className="space-y-4 mb-10">
                 {contactCards.map((card) => (
                   <a key={card.label} href={card.href} {...(card.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
@@ -49,31 +49,31 @@ export default function Contact() {
                       <card.icon className={card.iconColor} size={20} />
                     </div>
                     <div>
-                      <p className="text-[11px] text-slate-500 uppercase tracking-wider font-medium mb-0.5">{card.label}</p>
-                      <p className="text-white font-semibold">{card.value}</p>
+                      <p className="text-[11px] uppercase tracking-wider font-medium mb-0.5 theme-text-muted">{card.label}</p>
+                      <p className="font-semibold theme-text">{card.value}</p>
                     </div>
                   </a>
                 ))}
                 <div className="glass-card p-5 rounded-2xl flex items-start gap-5">
                   <div className="w-12 h-12 bg-orange-500/10 border border-orange-500/20 rounded-xl flex items-center justify-center flex-shrink-0"><FiMapPin className="text-orange-400" size={20} /></div>
-                  <div><p className="text-[11px] text-slate-500 uppercase tracking-wider font-medium mb-0.5">Address</p><p className="text-white font-semibold">{SITE_CONFIG.address}</p></div>
+                  <div><p className="text-[11px] uppercase tracking-wider font-medium mb-0.5 theme-text-muted">Address</p><p className="font-semibold theme-text">{SITE_CONFIG.address}</p></div>
                 </div>
                 <div className="glass-card p-5 rounded-2xl flex items-start gap-5">
                   <div className="w-12 h-12 bg-purple-500/10 border border-purple-500/20 rounded-xl flex items-center justify-center flex-shrink-0"><FiClock className="text-purple-400" size={20} /></div>
-                  <div><p className="text-[11px] text-slate-500 uppercase tracking-wider font-medium mb-0.5">Hours</p><p className="text-white font-semibold">{SITE_CONFIG.hours.weekdays}</p><p className="text-slate-400 text-sm">{SITE_CONFIG.hours.sunday}</p></div>
+                  <div><p className="text-[11px] uppercase tracking-wider font-medium mb-0.5 theme-text-muted">Hours</p><p className="font-semibold theme-text">{SITE_CONFIG.hours.weekdays}</p><p className="text-sm theme-text-muted">{SITE_CONFIG.hours.sunday}</p></div>
                 </div>
               </div>
-              <div className="rounded-2xl overflow-hidden border border-dark-border h-64 shadow-card">
+              <div className="rounded-2xl overflow-hidden h-64 shadow-card" style={{ border: '1px solid var(--color-border)' }}>
                 <iframe src={SITE_CONFIG.mapUrl} width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="BM Battery Zone Location" />
               </div>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.15 }}>
-              <h2 className="text-2xl font-display font-bold text-white mb-8">Send Us a <span className="gradient-text">Message</span></h2>
+              <h2 className="text-2xl font-display font-bold theme-text mb-8">Send Us a <span className="gradient-text">Message</span></h2>
               {submitted ? (
                 <div className="glass-card p-12 rounded-2xl text-center gradient-border">
                   <div className="w-20 h-20 mx-auto mb-4 bg-solar/10 border border-solar/20 rounded-2xl flex items-center justify-center"><span className="text-5xl">✅</span></div>
-                  <h3 className="font-display font-bold text-2xl text-white mb-3">Message Sent!</h3>
-                  <p className="text-slate-400">Your message has been sent via WhatsApp. We'll respond shortly.</p>
+                  <h3 className="font-display font-bold text-2xl theme-text mb-3">Message Sent!</h3>
+                  <p className="theme-text-secondary">Your message has been sent via WhatsApp. We'll respond shortly.</p>
                   <button onClick={() => { setSubmitted(false); setForm({ name: '', phone: '', service: '', message: '' }); }} className="mt-6 btn-secondary">Send Another</button>
                 </div>
               ) : (
@@ -83,7 +83,7 @@ export default function Contact() {
                   <div><label htmlFor="service" className="form-label">Service Required</label><select id="service" name="service" value={form.service} onChange={handleChange} className="form-select"><option value="">Select a service...</option>{serviceOptions.map((s) => <option key={s} value={s}>{s}</option>)}</select></div>
                   <div><label htmlFor="message" className="form-label">Message</label><textarea id="message" name="message" value={form.message} onChange={handleChange} rows={4} placeholder="Tell us about your requirement..." className="form-input resize-none" /></div>
                   <button type="submit" className="w-full btn-whatsapp justify-center py-4" id="contact-form-submit"><FaWhatsapp size={20} /> Send via WhatsApp <FiSend size={16} /></button>
-                  <p className="text-xs text-slate-500 text-center">Clicking "Send" will open WhatsApp with your message pre-filled.</p>
+                  <p className="text-xs text-center theme-text-muted">Clicking "Send" will open WhatsApp with your message pre-filled.</p>
                 </form>
               )}
             </motion.div>

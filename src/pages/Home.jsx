@@ -1,10 +1,13 @@
 import { Helmet } from 'react-helmet-async';
 import HeroSection from '../components/home/HeroSection';
-import ServicesSection from '../components/home/ServicesSection';
 import StatsSection from '../components/home/StatsSection';
+import CategoriesSection from '../components/home/CategoriesSection';
+import ServicesSection from '../components/home/ServicesSection';
 import BrandsSection from '../components/home/BrandsSection';
+import WhyChooseUsSection from '../components/home/WhyChooseUsSection';
 import ProcessSection from '../components/home/ProcessSection';
 import TestimonialsSection from '../components/home/TestimonialsSection';
+import HomeFAQSection from '../components/home/HomeFAQSection';
 import HomeCTA from '../components/home/HomeCTA';
 
 export default function Home() {
@@ -17,10 +20,13 @@ export default function Home() {
       <main>
         <HeroSection />
         <StatsSection />
+        <CategoriesSection />
         <ServicesSection />
         <BrandsSection />
+        <WhyChooseUsSection />
         <ProcessSection />
         <TestimonialsSection />
+        <HomeFAQSection />
         <HomeCTA />
       </main>
     </>

@@ -36,7 +36,7 @@ export default function FloatingCTA() {
             aria-label="Chat on WhatsApp"
           >
             <FaWhatsapp size={26} />
-            <span className="absolute right-full mr-3 px-3 py-1.5 bg-dark-card border border-dark-border text-white text-xs font-medium rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-elevated">
+            <span className="absolute right-full mr-3 px-3 py-1.5 text-xs font-medium rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none theme-text" style={{ background: 'var(--color-card)', border: '1px solid var(--color-border)', boxShadow: 'var(--shadow-elevated)' }}>
               WhatsApp Us
             </span>
           </motion.a>
@@ -51,7 +51,7 @@ export default function FloatingCTA() {
             aria-label="Call Now"
           >
             <FiPhone size={22} />
-            <span className="absolute right-full mr-3 px-3 py-1.5 bg-dark-card border border-dark-border text-white text-xs font-medium rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-elevated">
+            <span className="absolute right-full mr-3 px-3 py-1.5 text-xs font-medium rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none theme-text" style={{ background: 'var(--color-card)', border: '1px solid var(--color-border)', boxShadow: 'var(--shadow-elevated)' }}>
               Call Now
             </span>
           </motion.a>

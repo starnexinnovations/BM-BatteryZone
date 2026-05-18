@@ -11,7 +11,7 @@ function StarRating({ rating }) {
   return (
     <div className="flex gap-1">
       {Array.from({ length: 5 }).map((_, i) => (
-        <FiStar key={i} size={14} className={i < rating ? 'text-accent fill-current' : 'text-slate-700'} fill={i < rating ? 'currentColor' : 'none'} />
+        <FiStar key={i} size={14} className={i < rating ? 'text-accent fill-current' : 'theme-text-muted'} fill={i < rating ? 'currentColor' : 'none'} />
       ))}
     </div>
   );
@@ -21,7 +21,12 @@ export default function TestimonialsSection() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section className="section-padding bg-dark-bg relative overflow-hidden" id="testimonials" aria-label="Customer testimonials">
+    <section
+      className="section-padding relative overflow-hidden"
+      id="testimonials"
+      aria-label="Customer testimonials"
+      style={{ background: 'var(--color-bg)' }}
+    >
       <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
       <div className="container-max relative z-10" ref={ref}>
         <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }} className="text-center mb-14">
@@ -29,7 +34,7 @@ export default function TestimonialsSection() {
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse" /> Customer Reviews
           </div>
           <h2 className="section-title mb-4">What Our <span className="gradient-text">Customers</span> Say</h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">Thousands of satisfied customers trust BM Battery Zone for their power needs.</p>
+          <p className="text-lg max-w-2xl mx-auto theme-text-secondary">Thousands of satisfied customers trust BM Battery Zone for their power needs.</p>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.2, duration: 0.6 }}>
@@ -40,12 +45,12 @@ export default function TestimonialsSection() {
                 <div className="glass-card p-7 rounded-2xl h-full flex flex-col gap-5 hover:border-accent/25 transition-all duration-300 group">
                   <div className="text-accent/20 text-4xl font-serif leading-none">"</div>
                   <StarRating rating={t.rating} />
-                  <p className="text-slate-300 text-sm leading-relaxed flex-1">{t.text}</p>
-                  <div className="flex items-center gap-4 pt-4 border-t border-white/[0.06]">
+                  <p className="text-sm leading-relaxed flex-1 theme-text-secondary">{t.text}</p>
+                  <div className="flex items-center gap-4 pt-4" style={{ borderTop: '1px solid var(--card-glass-border)' }}>
                     <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${t.avatarColor} flex items-center justify-center text-white font-bold text-sm flex-shrink-0 shadow-md`}>{t.avatar}</div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-semibold text-white text-sm truncate">{t.name}</p>
-                      <p className="text-slate-500 text-xs truncate">{t.role} · {t.location}</p>
+                      <p className="font-semibold text-sm theme-text truncate">{t.name}</p>
+                      <p className="text-xs theme-text-muted truncate">{t.role} · {t.location}</p>
                     </div>
                   </div>
                 </div>
@@ -59,7 +64,7 @@ export default function TestimonialsSection() {
             <div className="flex gap-0.5">
               {[1,2,3,4,5].map((i) => <FiStar key={i} size={14} className="text-accent fill-current" fill="currentColor" />)}
             </div>
-            <span className="text-slate-400 text-sm">Rated <span className="text-white font-semibold">4.9/5</span> by 500+ customers</span>
+            <span className="text-sm theme-text-secondary">Rated <span className="font-semibold theme-text">4.9/5</span> by 500+ customers</span>
           </div>
         </motion.div>
       </div>

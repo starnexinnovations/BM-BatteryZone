@@ -14,7 +14,12 @@ export default function ServicesSection() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section className="section-padding bg-dark-bg relative overflow-hidden" id="services" aria-label="Our services">
+    <section
+      className="section-padding relative overflow-hidden"
+      id="services"
+      aria-label="Our services"
+      style={{ background: 'var(--color-bg)' }}
+    >
       <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
       <div className="container-max relative z-10" ref={ref}>
         <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }} className="text-center mb-16">
@@ -22,7 +27,7 @@ export default function ServicesSection() {
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse" /> What We Offer
           </div>
           <h2 className="section-title mb-4">Complete <span className="gradient-text">Power Solutions</span></h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          <p className="text-lg max-w-2xl mx-auto theme-text-secondary">
             From automotive batteries to advanced solar systems — we provide everything you need to keep your world powered.
           </p>
         </motion.div>
@@ -35,11 +40,11 @@ export default function ServicesSection() {
                 className="service-card group" id={`service-card-${service.id}`}>
                 <div className={`h-0.5 w-0 group-hover:w-full transition-all duration-500 ${colors.line} mb-6 rounded-full`} />
                 <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-6 transition-all duration-300 ${colors.icon}`}>{service.icon}</div>
-                <h3 className="font-display font-bold text-xl text-white mb-3 group-hover:text-accent transition-colors">{service.title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed mb-5">{service.description}</p>
+                <h3 className="font-display font-bold text-xl mb-3 theme-text group-hover:text-accent transition-colors">{service.title}</h3>
+                <p className="text-sm leading-relaxed mb-5 theme-text-secondary">{service.description}</p>
                 <ul className="space-y-2.5 mb-6">
                   {service.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-2.5 text-xs text-slate-400">
+                    <li key={feature} className="flex items-center gap-2.5 text-xs theme-text-secondary">
                       <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${colors.dot}`} /> {feature}
                     </li>
                   ))}

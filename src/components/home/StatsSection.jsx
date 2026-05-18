@@ -14,7 +14,12 @@ export default function StatsSection() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
-    <section className="py-20 px-4 relative overflow-hidden" id="stats" aria-label="Business statistics" ref={ref}>
+    <section
+      className="py-20 px-4 relative overflow-hidden"
+      id="stats"
+      aria-label="Business statistics"
+      ref={ref}
+    >
       <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(232,168,56,0.05), var(--color-card), rgba(45,127,234,0.05))' }} />
       <div className="absolute inset-0 bg-dots opacity-40" />
       <div className="container-max relative z-10">

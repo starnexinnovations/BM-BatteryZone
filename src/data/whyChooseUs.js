@@ -1,0 +1,58 @@
+import { FiShield, FiTruck, FiTool, FiAward, FiClock, FiHeart } from 'react-icons/fi';
+
+export const whyChooseUs = [
+  {
+    id: 1,
+    icon: FiShield,
+    title: 'Genuine Products',
+    description: 'Only manufacturer-authorized, warranty-backed batteries from top brands. No refurbished or counterfeit products.',
+    color: 'amber',
+    stat: '100%',
+    statLabel: 'Genuine',
+  },
+  {
+    id: 2,
+    icon: FiTruck,
+    title: 'Free Doorstep Delivery',
+    description: 'Same-day free delivery and professional installation within Coimbatore city limits. No extra charges.',
+    color: 'blue',
+    stat: 'Same Day',
+    statLabel: 'Delivery',
+  },
+  {
+    id: 3,
+    icon: FiTool,
+    title: 'Expert Installation',
+    description: 'Trained technicians handle every installation with precision. Free battery health check included with every service.',
+    color: 'green',
+    stat: '12+',
+    statLabel: 'Years Exp.',
+  },
+  {
+    id: 4,
+    icon: FiAward,
+    title: 'Best Exchange Value',
+    description: 'Get the highest buy-back price for your old battery. Instant exchange with eco-friendly disposal guaranteed.',
+    color: 'amber',
+    stat: 'Best',
+    statLabel: 'Value',
+  },
+  {
+    id: 5,
+    icon: FiClock,
+    title: 'Reliable After-Sales',
+    description: 'Hassle-free warranty claims processed directly at our store. Quick turnaround on all service requests.',
+    color: 'blue',
+    stat: '5000+',
+    statLabel: 'Customers',
+  },
+  {
+    id: 6,
+    icon: FiHeart,
+    title: 'Customer First',
+    description: 'Transparent advice with no pressure selling. We help you find the right battery — not the most expensive one.',
+    color: 'green',
+    stat: '4.9/5',
+    statLabel: 'Rating',
+  },
+];

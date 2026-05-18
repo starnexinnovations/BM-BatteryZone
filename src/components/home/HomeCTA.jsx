@@ -12,9 +12,9 @@ export default function HomeCTA() {
 
   return (
     <section className="py-24 px-4 relative overflow-hidden" id="home-cta" aria-label="Call to action" ref={ref}>
-      <div className="absolute inset-0 bg-gradient-to-br from-accent/12 via-dark-card to-electric/12" />
-      <div className="glow-dot w-[500px] h-[500px] bg-accent/20 -top-40 -left-40" />
-      <div className="glow-dot w-[400px] h-[400px] bg-electric/15 -bottom-40 -right-40" />
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(232,168,56,0.08), var(--color-card), rgba(45,127,234,0.08))' }} />
+      <div className="glow-dot w-[500px] h-[500px] bg-accent/15 -top-40 -left-40" />
+      <div className="glow-dot w-[400px] h-[400px] bg-electric/10 -bottom-40 -right-40" />
 
       <div className="container-max relative z-10">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="text-center max-w-3xl mx-auto">
@@ -22,7 +22,7 @@ export default function HomeCTA() {
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse" /> Limited Time Offer
           </div>
           <h2 className="section-title mb-6">Get a <span className="gradient-text">FREE</span> Battery Health Check <span className="text-electric-light">Today!</span></h2>
-          <p className="text-slate-300 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
+          <p className="text-lg leading-relaxed mb-10 max-w-2xl mx-auto theme-text-secondary">
             Don't wait for a breakdown. Visit us or call now for a free battery diagnostic. No pressure, no charge.
           </p>
           <div className="flex flex-wrap gap-4 justify-center mb-10">
@@ -38,7 +38,7 @@ export default function HomeCTA() {
           </div>
           <div className="flex flex-wrap justify-center gap-6 md:gap-8">
             {benefits.map((item) => (
-              <span key={item} className="flex items-center gap-2 text-sm text-slate-400">
+              <span key={item} className="flex items-center gap-2 text-sm theme-text-secondary">
                 <FiCheckCircle className="text-solar flex-shrink-0" size={15} /> {item}
               </span>
             ))}

@@ -55,11 +55,10 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
           ? 'backdrop-blur-2xl shadow-[0_4px_30px_rgba(0,0,0,0.15)]'
           : 'bg-transparent'
-      }`}
+        }`}
       style={scrolled ? {
         background: 'var(--color-bg)',
         borderBottom: '1px solid var(--color-border-subtle)',
@@ -76,11 +75,10 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link key={link.path} to={link.path}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  location.pathname === link.path
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${location.pathname === link.path
                     ? 'text-accent bg-accent/10'
                     : 'theme-text-secondary hover:text-accent'
-                }`}
+                  }`}
                 style={location.pathname !== link.path ? { color: 'var(--color-text-secondary)' } : {}}
               >
                 {link.name}
@@ -90,7 +88,7 @@ export default function Navbar() {
 
           {/* CTA Buttons + Theme Toggle */}
           <div className="hidden lg:flex items-center gap-2.5">
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
             <a href={`tel:${SITE_CONFIG.phone}`}
               className="flex items-center gap-2 text-sm font-semibold text-electric-light hover:text-electric transition-colors px-4 py-2.5 rounded-xl hover:bg-electric/10"
               id="navbar-call-btn">
@@ -132,11 +130,10 @@ export default function Navbar() {
               {navLinks.map((link, i) => (
                 <motion.div key={link.path} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}>
                   <Link to={link.path}
-                    className={`block text-base font-medium py-3 px-4 rounded-xl transition-all ${
-                      location.pathname === link.path
+                    className={`block text-base font-medium py-3 px-4 rounded-xl transition-all ${location.pathname === link.path
                         ? 'text-accent bg-accent/10'
                         : 'theme-text-secondary hover:text-accent'
-                    }`}
+                      }`}
                   >
                     {link.name}
                   </Link>

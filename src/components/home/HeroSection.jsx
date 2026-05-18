@@ -118,7 +118,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 1.5 }} className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500 text-xs">
+      <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 1.5 }} className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 theme-text-muted text-xs">
         <span className="tracking-widest uppercase text-[10px]">Scroll</span>
         <div className="w-px h-8 bg-gradient-to-b from-accent/60 to-transparent rounded-full" />
       </motion.div>

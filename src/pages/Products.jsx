@@ -1,10 +1,11 @@
-import { useState, useMemo, memo } from 'react';
+import { useState, useMemo, memo, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaWhatsapp } from 'react-icons/fa';
-import { FiFilter, FiShield, FiZap, FiStar, FiShoppingCart, FiHeart, FiSearch } from 'react-icons/fi';
-import { products, categories, getStockInfo, getDiscount, brandData } from '../data/products';
-import { getWhatsAppUrl } from '../data/config';
+import { FiFilter, FiShield, FiZap, FiStar, FiSearch, FiPhoneCall } from 'react-icons/fi';
+import { useSearchParams } from 'react-router-dom';
+import { products, categories, getStockInfo, brandData } from '../data/products';
+import { getWhatsAppUrl, SITE_CONFIG } from '../data/config';
 import ProductImage from '../components/shared/ProductImage';
 
 const highlightColors = {
@@ -14,9 +15,8 @@ const highlightColors = {
 };
 
 const ProductCard = memo(function ProductCard({ product }) {
-  const msg = `Hi! I'm interested in ${product.brand} ${product.name} (${product.capacity}). Please send details and price.`;
+  const msg = `Hi! I'm interested in ${product.brand} ${product.name} (${product.capacity}). Please share details and availability.`;
   const stock = getStockInfo(product.stockStatus);
-  const discount = getDiscount(product.mrp, product.sellingPrice);
   const brand = brandData[product.brandKey];
 
   return (
@@ -37,20 +37,15 @@ const ProductCard = memo(function ProductCard({ product }) {
               {product.highlight}
             </span>
           )}
-          {discount > 0 && (
-            <span className="text-[10px] font-bold px-2.5 py-1 rounded-lg bg-red-500/90 text-white">
-              {discount}% OFF
-            </span>
-          )}
         </div>
 
         {/* Quick Actions — visible on hover */}
         <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300 z-10">
-          <button className="w-8 h-8 rounded-lg flex items-center justify-center text-white bg-black/40 backdrop-blur-sm hover:bg-accent hover:text-black transition-colors" title="Add to Wishlist">
-            <FiHeart size={14} />
-          </button>
           <a href={getWhatsAppUrl(msg)} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-lg flex items-center justify-center text-white bg-green-500/80 backdrop-blur-sm hover:bg-green-500 transition-colors" title="Quick Enquiry">
             <FaWhatsapp size={14} />
+          </a>
+          <a href={`tel:${SITE_CONFIG.phone}`} className="w-8 h-8 rounded-lg flex items-center justify-center text-white bg-electric/80 backdrop-blur-sm hover:bg-electric transition-colors" title="Call Now">
+            <FiPhoneCall size={14} />
           </a>
         </div>
 
@@ -101,6 +96,14 @@ const ProductCard = memo(function ProductCard({ product }) {
           </div>
         </div>
 
+        {/* Compatibility */}
+        {product.compatibility && (
+          <p className="text-xs theme-text-muted mb-3 flex items-center gap-1.5">
+            <span className="w-1 h-1 rounded-full bg-accent" />
+            {product.compatibility}
+          </p>
+        )}
+
         {/* Spec Tags */}
         <div className="flex flex-wrap gap-1.5 mb-3">
           {Object.entries(product.specs).map(([, val]) => (
@@ -108,27 +111,16 @@ const ProductCard = memo(function ProductCard({ product }) {
           ))}
         </div>
 
-        {/* Stock Status */}
-        <div className="flex items-center gap-2 mb-4">
-          <span className={`w-2 h-2 rounded-full ${stock.dot}`} />
-          <span className={`text-xs font-medium ${stock.color}`}>{stock.label}</span>
-        </div>
-
-        {/* Price & CTA */}
-        <div className="flex items-end justify-between pt-3" style={{ borderTop: '1px solid var(--card-glass-border)' }}>
-          <div>
-            <div className="flex items-center gap-2">
-              <p className="font-bold text-lg theme-text">₹{product.sellingPrice?.toLocaleString('en-IN')}</p>
-              {product.mrp > product.sellingPrice && (
-                <p className="text-xs line-through theme-text-muted">₹{product.mrp?.toLocaleString('en-IN')}</p>
-              )}
-            </div>
-            <p className="text-[10px] theme-text-muted">Incl. all taxes</p>
+        {/* Stock Status & CTA */}
+        <div className="flex items-center justify-between pt-3" style={{ borderTop: '1px solid var(--card-glass-border)' }}>
+          <div className="flex items-center gap-2">
+            <span className={`w-2 h-2 rounded-full ${stock.dot}`} />
+            <span className={`text-xs font-medium ${stock.color}`}>{stock.label}</span>
           </div>
           <a href={getWhatsAppUrl(msg)} target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-1.5 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition-all hover:scale-105 shadow-sm"
             id={`product-enquire-${product.id}`}>
-            <FaWhatsapp size={14} /> Enquire
+            <FaWhatsapp size={14} /> Get Quote
           </a>
         </div>
       </div>
@@ -137,9 +129,19 @@ const ProductCard = memo(function ProductCard({ product }) {
 });
 
 export default function Products() {
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [searchParams] = useSearchParams();
+  const initialCategory = searchParams.get('category') || 'all';
+  const [activeCategory, setActiveCategory] = useState(initialCategory);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('default');
+
+  // Update category if URL param changes
+  useEffect(() => {
+    const cat = searchParams.get('category');
+    if (cat && categories.some(c => c.id === cat)) {
+      setActiveCategory(cat);
+    }
+  }, [searchParams]);
 
   const filtered = useMemo(() => {
     let result = activeCategory === 'all' ? [...products] : products.filter(p => p.category === activeCategory);
@@ -153,10 +155,9 @@ export default function Products() {
       );
     }
     switch (sortBy) {
-      case 'price-low': return result.sort((a, b) => a.sellingPrice - b.sellingPrice);
-      case 'price-high': return result.sort((a, b) => b.sellingPrice - a.sellingPrice);
       case 'rating': return result.sort((a, b) => b.rating - a.rating);
       case 'popular': return result.sort((a, b) => b.reviewCount - a.reviewCount);
+      case 'warranty': return result.sort((a, b) => parseInt(b.warranty) - parseInt(a.warranty));
       default: return result;
     }
   }, [activeCategory, searchQuery, sortBy]);
@@ -165,7 +166,7 @@ export default function Products() {
     <>
       <Helmet>
         <title>Products | BM Battery Zone - Batteries for Car, Bike, Inverter, Solar & UPS</title>
-        <meta name="description" content="Browse our wide range of batteries - car, bike, inverter, solar, and UPS batteries from top brands like Exide, Amaron, Luminous, Okaya. Best prices in Coimbatore." />
+        <meta name="description" content="Browse our wide range of batteries - car, bike, inverter, solar, and UPS batteries from top brands like Exide, Amaron, Luminous, Bosch. Contact us for best quotes in Coimbatore." />
       </Helmet>
 
       <div className="page-header">
@@ -175,7 +176,7 @@ export default function Products() {
             Premium <span className="gradient-text">Battery</span> Collection
           </motion.h1>
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="max-w-2xl mx-auto theme-text-secondary">
-            All products come with manufacturer warranty, professional installation, and expert after-sales support.
+            All products come with manufacturer warranty, professional installation, and expert after-sales support. Contact us for the best quotes.
           </motion.p>
         </div>
       </div>
@@ -199,10 +200,9 @@ export default function Products() {
             </div>
             <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="form-select w-full md:w-52" id="product-sort">
               <option value="default">Sort: Default</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
               <option value="rating">Highest Rated</option>
               <option value="popular">Most Popular</option>
+              <option value="warranty">Longest Warranty</option>
             </select>
           </div>
 
