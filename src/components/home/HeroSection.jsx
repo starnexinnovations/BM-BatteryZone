@@ -46,7 +46,7 @@ export default function HeroSection() {
             </motion.h1>
 
             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.6 }} className="text-lg leading-relaxed mb-8 max-w-xl theme-text-secondary">
-              Your one-stop destination for premium batteries, UPS systems, and solar solutions.
+              Your one-stop destination for premium car & bike batteries, UPS systems, and solar solutions.
               Expert installation, doorstep delivery, and trusted after-sales service — all under one roof.
             </motion.p>
 

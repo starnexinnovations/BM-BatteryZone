@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import HeroSection from '../components/home/HeroSection';
+import FeaturedProductsSection from '../components/home/FeaturedProductsSection';
 import StatsSection from '../components/home/StatsSection';
 import CategoriesSection from '../components/home/CategoriesSection';
 import ServicesSection from '../components/home/ServicesSection';
@@ -19,6 +20,7 @@ export default function Home() {
       </Helmet>
       <main>
         <HeroSection />
+        <FeaturedProductsSection />
         <StatsSection />
         <CategoriesSection />
         <ServicesSection />

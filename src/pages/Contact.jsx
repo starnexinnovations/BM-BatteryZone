@@ -79,7 +79,7 @@ export default function Contact() {
               ) : (
                 <form onSubmit={handleSubmit} className="glass-card p-8 rounded-2xl space-y-5 gradient-border">
                   <div><label htmlFor="name" className="form-label">Your Name *</label><input id="name" type="text" name="name" value={form.name} onChange={handleChange} required placeholder="Enter your name" className="form-input" /></div>
-                  <div><label htmlFor="phone" className="form-label">Phone Number *</label><input id="phone" type="tel" name="phone" value={form.phone} onChange={handleChange} required placeholder="+91 98765 43210" className="form-input" /></div>
+                  <div><label htmlFor="phone" className="form-label">Phone Number *</label><input id="phone" type="tel" name="phone" value={form.phone} onChange={handleChange} required placeholder="+91 9047142757" className="form-input" /></div>
                   <div><label htmlFor="service" className="form-label">Service Required</label><select id="service" name="service" value={form.service} onChange={handleChange} className="form-select"><option value="">Select a service...</option>{serviceOptions.map((s) => <option key={s} value={s}>{s}</option>)}</select></div>
                   <div><label htmlFor="message" className="form-label">Message</label><textarea id="message" name="message" value={form.message} onChange={handleChange} rows={4} placeholder="Tell us about your requirement..." className="form-input resize-none" /></div>
                   <button type="submit" className="w-full btn-whatsapp justify-center py-4" id="contact-form-submit"><FaWhatsapp size={20} /> Send via WhatsApp <FiSend size={16} /></button>

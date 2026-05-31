@@ -57,7 +57,7 @@ export const galleryItems = [
   },
   {
     id: 8,
-    title: 'Industrial UPS Installation',
+    title: 'Online UPS Installation',
     location: 'Coimbatore',
     category: 'ups',
     description: '20KVA UPS system for manufacturing unit with battery bank configuration.',
